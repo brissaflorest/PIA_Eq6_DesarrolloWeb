@@ -13,15 +13,15 @@
 <body>
     <header class="site-header">
         <div class="wrap header-inner">
-            <img src="assets/img/DIVERTITUPLAS_LOGO-removebg-preview.png" alt="Logo Diverti-tuplas" class="logo" />
+            <img src="assets/img/LOGO-removebg-preview.png" alt="Logo Diverti-tuplas" class="logo" />
             <nav class="main-nav" aria-label="Menú principal">
-                <a href="#nosotros">Nosotros</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#galeria">Galería</a>
-                <a href="#testimonios">Testimonios</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contacto">Contacto</a>
-                <a href="#cotizacion">Cotización</a>
+                <a id="nosotros-nav" href="#nosotros">Nosotros</a>
+                <a id="servicios-nav" href="#servicios">Servicios</a>
+                <a id="galeria-nav" href="#galeria">Galería</a>
+                <a id="testimonios-nav" href="#testimonios">Testimonios</a>
+                <a id="faq-nav" href="#faq">FAQ</a>
+                <a id="contacto-nav" href="#contacto">Contacto</a>
+                <a id="cotizacion-nav" href="#cotizacion">Cotización</a>
             </nav>
             <div class="header-actions">
                 <button id="themeToggle" aria-pressed="false" title="Alternar tema">🌗</button>
@@ -34,13 +34,95 @@
         <!-- Hero -->
         <section class="hero">
             <div class="wrap hero-inner">
-                <h1>¡Bienvenidos a <span class="accent">Diverti-Tuplas</span>!</h1>
+                <!--Los span son las bolitas-->
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:28;"></span>
+
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+                <h1 class="accent">¡Bienvenidos a Diverti-Tuplas!</h1>
                 <p class="lead">El mejor lugar para festejos infantiles: juegos, shows, y experiencias inolvidables.</p>
+             
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+    
             </div>
         </section>
 
         <!-- Nosotros -->
-        <section id="nosotros" class="section nosotros wrap">
+        <section id="nosotros" class="section-nosotros-wrap">
             <h2>Nosotros</h2>
             <div class="nosotros-grid">
                 <div class="nosotros-text">
@@ -52,7 +134,12 @@
                 </div>
                 <div class="nosotros-media">
                     <!-- placeholder image, reemplazar por la imagen de las mascotas luego -->
-                    <img src="assets/img/TUPLIN_Y_TUPLITA-removebg-preview.png" alt="Mascotas Divertiplay" />
+                    <img id="heroGif"
+                    src="assets/img/GIF_BG_OSCURO.gif"
+                    data-dark="assets/img/GIF_BG_OSCURO.gif"
+                    data-light="assets/img/GIF_BG_CLARO.gif"
+                    alt="GIF de tuplin y tuplita"
+                    width="200" height="300">
                 </div>
             </div>
         </section>

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Año en footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+
   // Simulación de servicios (en Django vendrá desde API)
   const servicios = [
     { id: 1, nombre: "Paquete Básico", descripcion: "Sala 2 horas, decoración básica, animador.", precio: 1200.00, duracion: 2, caracteristicas: ["Decoración", "Animador"] },
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.reset();
   });
 
-  // Theme toggle
+  // Ejecucucion del boton de toggle de tema
   const themeToggle = document.getElementById('themeToggle');
   themeToggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
@@ -105,6 +106,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 }); // DOMContentLoaded
+
+
+/* Cambiar gif a claro/oscuro según tema */ 
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const heroGif = document.getElementById('heroGif');
+
+    // Detecta preferencia y/o valor guardado
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem('theme'); // 'dark' | 'light' | null
+    const initialDark = saved ? saved === 'dark' : prefersDark;
+
+    function applyTheme(dark) {
+        if (themeToggle) themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+
+        if (heroGif) {
+            const src = dark ? heroGif.dataset.light : heroGif.dataset.dark; /*aca no entendi del todo que hce*/ 
+            if (src) heroGif.src = src;
+        }
+
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    applyTheme(initialDark);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const nowDark = !document.documentElement.classList.contains('dark');
+            applyTheme(nowDark);
+        });
+    }
+});
 
 /* Helpers */
 function escapeHtml(s){
