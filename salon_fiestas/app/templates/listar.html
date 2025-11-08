@@ -19,6 +19,7 @@
             <tr>
                 <th>Nombre del Cliente</th>
                 <th>Fecha del Evento</th>
+                <th>Duración</th>
                 <th># Invitados</th>
                 <th>Tipo de Evento</th>
                 <th>Teléfono</th>
@@ -30,11 +31,12 @@
             {% for reservacion in reservaciones %}
             <tr>
                 <td>{{ reservacion.nombre_cliente }}</td>
-                <td>{{ reservacion.fecha_evento }}</td>
+                <td>{{ reservacion.fecha_evento|date:"Y-m-d H:i" }}</td>
+                <td>{{ reservacion.duracion_horas }}</td>
                 <td>{{ reservacion.num_invitados }}</td>
                 <td>{{ reservacion.tipo_evento }}</td>
                 <td>{{ reservacion.telefono_contacto }}</td>
-                <td>{{ reservacion.estatus }}</td>
+                <td>{{ reservacion.estatus_actualizado }}</td>
                 <td>
                     <a class="boton-editar" href="{% url 'editar' reservacion.id %}">Editar</a>
                     <a class="boton-eliminar" href="{% url 'eliminar' reservacion.id %}" onclick="return confirmarEliminacion()">Eliminar</a>
