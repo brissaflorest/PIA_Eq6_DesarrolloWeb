@@ -94,7 +94,7 @@ body{
 }
 
 .logo{
-  height: 300px;
+  height: 175px;
   width: 400px;
   display: block;
   margin: 0 auto;
@@ -203,7 +203,7 @@ body{
 
 /* BOLITAS */
 .hero{
-  background: linear-gradient(135deg, #FFF8F0, #ffef93, #ff9ecf, #b8e4ff);
+  background: linear-gradient(-45deg, var(--bg), var(--surface));
   animation: gradientShift 10s ease infinite;
   position: relative;
   overflow: hidden;
@@ -358,7 +358,7 @@ body{
 
 /* NOSOTROS */
 .section.nosotros {
-  background: linear-gradient(to right, #FFF8F0, #fff3ad);
+  background: var(--surface);
   padding: 4rem;
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(161, 159, 34, 0.2);
@@ -376,6 +376,10 @@ body{
   font-size: 2.5rem;
   color: #FBB92A;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section.nosotros p {
+  color: var(--text);
 }
 
 .nosotros-grid{
@@ -767,7 +771,7 @@ select, .cotizador-form input {
 
 .section.ubicacion p {
   font-size: 1.1rem;
-  color: #444;
+  color: var(--text);
   margin-bottom: 2rem;
 }
 
@@ -787,7 +791,7 @@ select, .cotizador-form input {
 
 /* PIE DE PAGINA */
 .site-footer {
-  color: #444;
+  color: var(--text);
   padding: 2rem 1rem;
   box-shadow: 0 -4px 12px rgba(255, 105, 180, 0.1);
   font-size: 1rem;
