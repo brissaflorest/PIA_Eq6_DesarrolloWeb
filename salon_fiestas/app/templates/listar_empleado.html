@@ -42,7 +42,7 @@
                 <td>{{ reservacion.telefono_contacto }}</td>
                 <td>{{ reservacion.estatus }}</td>
                 <td>
-                    {% if reservacion.estatus != "listo" %}
+                    {% if reservacion.estatus != "Listo" %}
                     <form method="post" action="{% url 'marcar_listo' reservacion.id %}">
                         {% csrf_token %}
                         <button class="boton-listo" type="submit">Marcar como listo</button>

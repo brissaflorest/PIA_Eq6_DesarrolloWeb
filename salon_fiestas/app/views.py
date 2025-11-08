@@ -115,6 +115,6 @@ class CustomLoginView(LoginView):
         
 def marcar_listo(request, id):
     reservacion = get_object_or_404(RESERVACION, id=id)
-    reservacion.estatus = "listo"
+    reservacion.estatus = "Listo"
     reservacion.save()
     return redirect('listar_empleado')
