@@ -4,27 +4,121 @@
 <head>
     {% load static %}
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="icon" href="% static 'img/icono.png' %" type="image/x-icon" />
     <title>Divertiplay - Salón de eventos infantiles</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <meta name="description"
-        content="Divertiplay - Salón de eventos infantiles. Servicios, galería, testimonios, ubicación y cotizador interactivo." />
+    <meta name="description" content="Divertiplay - Salón de eventos infantiles. Servicios, galería, testimonios, ubicación y cotizador interactivo."/>
+    <script src="{% static 'js/script.js' %}"></script>
 </head>
 
 <body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="wrap hero-inner">
+            <!--Los span son las bolitas-->
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:22;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:15;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:28;"></span>
+
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:22;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:15;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:13;"></span>
+
+            <div class="lead">
+                <img class="logo" src="{% static 'img/LOGO-removebg-preview.png' %}" alt="Logo Diverti-tuplas" />
+            </div>
+
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:22;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:15;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:13;"></span>
+
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:22;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:15;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:13;"></span>
+
+        </div>
+    </section>
+
     <header class="site-header">
         <div class="wrap header-inner">
-            <img src="{% static 'img/LOGO-removebg-preview.png' %}" alt="Logo Diverti-tuplas" class="logo" />
             <nav class="main-nav" aria-label="Menú principal">
                 <a id="nosotros-nav" href="#nosotros">Nosotros</a>
+                <a id="instalaciones-nav" href="#instalaciones">Instalaciones</a>
                 <a id="servicios-nav" href="#servicios">Servicios</a>
                 <a id="galeria-nav" href="#galeria">Galería</a>
                 <a id="testimonios-nav" href="#testimonios">Testimonios</a>
                 <a id="faq-nav" href="#faq">FAQ</a>
-                <a id="contacto-nav" href="#contacto">Contacto</a>
                 <a id="cotizacion-nav" href="#cotizacion">Cotización</a>
+                <a id="contacto-nav" href="#contacto">Contacto</a>
+                <a id="ubicacion-nav" href="#ubicacion">Ubicación</a>
             </nav>
-            <div class="header-actions">
+            <div class="nav-buttons">
                 <button id="themeToggle" aria-pressed="false" title="Alternar tema">🌗</button>
                 <a href="{% url 'login' %}" class="btn" aria-label="Iniciar Sesión">☰</a>
             </div>
@@ -32,96 +126,6 @@
     </header>
 
     <main>
-        <!-- Hero -->
-        <section class="hero">
-            <div class="wrap hero-inner">
-                <!--Los span son las bolitas-->
-                <span style="--i:11;"></span>
-                <span style="--i:12;"></span>
-                <span style="--i:24;"></span>
-                <span style="--i:10;"></span>
-                <span style="--i:14;"></span>
-                <span style="--i:23;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:16;"></span>
-                <span style="--i:19;"></span>
-                <span style="--i:20;"></span>
-                <span style="--i:22;"></span>
-                <span style="--i:25;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:21;"></span>
-                <span style="--i:15;"></span>
-                <span style="--i:13;"></span>
-                <span style="--i:26;"></span>
-                <span style="--i:17;"></span>
-                <span style="--i:13;"></span>
-                <span style="--i:28;"></span>
-
-                <span style="--i:11;"></span>
-                <span style="--i:12;"></span>
-                <span style="--i:24;"></span>
-                <span style="--i:10;"></span>
-                <span style="--i:14;"></span>
-                <span style="--i:23;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:16;"></span>
-                <span style="--i:19;"></span>
-                <span style="--i:20;"></span>
-                <span style="--i:22;"></span>
-                <span style="--i:25;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:21;"></span>
-                <span style="--i:15;"></span>
-                <span style="--i:13;"></span>
-                <span style="--i:26;"></span>
-                <span style="--i:17;"></span>
-                <span style="--i:13;"></span>
-                <h1 class="accent">¡Bienvenidos a Diverti-Tuplas!</h1>
-                <p class="lead">El mejor lugar para festejos infantiles: juegos, shows, y experiencias inolvidables.</p>
-             
-                <span style="--i:11;"></span>
-                <span style="--i:12;"></span>
-                <span style="--i:24;"></span>
-                <span style="--i:10;"></span>
-                <span style="--i:14;"></span>
-                <span style="--i:23;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:16;"></span>
-                <span style="--i:19;"></span>
-                <span style="--i:20;"></span>
-                <span style="--i:22;"></span>
-                <span style="--i:25;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:21;"></span>
-                <span style="--i:15;"></span>
-                <span style="--i:13;"></span>
-                <span style="--i:26;"></span>
-                <span style="--i:17;"></span>
-                <span style="--i:13;"></span>
-
-                <span style="--i:11;"></span>
-                <span style="--i:12;"></span>
-                <span style="--i:24;"></span>
-                <span style="--i:10;"></span>
-                <span style="--i:14;"></span>
-                <span style="--i:23;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:16;"></span>
-                <span style="--i:19;"></span>
-                <span style="--i:20;"></span>
-                <span style="--i:22;"></span>
-                <span style="--i:25;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:21;"></span>
-                <span style="--i:15;"></span>
-                <span style="--i:13;"></span>
-                <span style="--i:26;"></span>
-                <span style="--i:17;"></span>
-                <span style="--i:13;"></span>
-    
-            </div>
-        </section>
-
         <!-- Nosotros -->
         <section id="nosotros" class="section nosotros wrap">
             <h2>Nosotros</h2>
@@ -133,6 +137,7 @@
                         reconocidos por la calidad de nuestras instalaciones y servicios.</p>
                     <p><strong>Valores:</strong> Seguridad, diversión, inclusión y profesionalismo.</p>
                 </div>
+
                 <div class="nosotros-media">
                     <!-- placeholder image, reemplazar por la imagen de las mascotas luego -->
                     <img id="heroGif"
@@ -141,6 +146,7 @@
                     data-light="{% static 'img/GIF_BG_CLARO.gif' %}"
                     alt="GIF de tuplin y tuplita"
                     width="200" height="300">
+                    <div class="burbuja-dialogo">¡Hola, somos los Tuplines!</div>
                 </div>
             </div>
         </section>
@@ -168,33 +174,71 @@
         <!-- Galería -->
         <section id="galeria" class="section galeria wrap">
             <h2>Galería</h2>
-            <div class="grid galeria-grid">
-                <img src="{% static 'img/evento1.jpg' %}" alt="Evento 1" />
-                <img src="{% static 'img/evento2.jpg' %}" alt="Evento 2" />
-                <img src="{% static 'img/evento3.jpg' %}" alt="Evento 3" />
-                <img src="{% static 'img/evento4.jpg' %}" alt="Evento 4" />
+            <div class="carrusel-scroll">
+                <div class="carrusel-contenido">
+                    <img src="{% static 'img/evento1.jpg' %}" alt="Evento 1" />
+                    <img src="{% static 'img/evento2.jpg' %}" alt="Evento 2" />
+                    <img src="{% static 'img/evento3.jpg' %}" alt="Evento 3" />
+                    <img src="{% static 'img/evento4.jpg' %}" alt="Evento 4" />
+                </div>
             </div>
         </section>
 
         <!-- Testimonios -->
         <section id="testimonios" class="section testimonios wrap">
             <h2>Testimonios</h2>
-            <div class="testimonials">
+            <div class="testimonials-grid">
                 <article class="testimonial">
-                    <img src="{% static 'img/tamara.png' %}" alt="Foto cliente A" />
+                    <img src="img/ken.png" alt="Ken" />
                     <div>
-                        <strong>María G.</strong>
+                        <strong>Ken A.</strong>
                         <div class="stars">★★★★★</div>
-                        <p>Celebramos el cumpleaños de mi hija y todo salió perfecto. El equipo super atento.</p>
+                        <p>Me encanta ver cómo cada fiesta se convierte en un recuerdo inolvidable. ¡Súper Recomendado!</p>
                     </div>
                 </article>
+
                 <article class="testimonial">
-                    <img src="https://elcomercio.pe/resizer/v2/FWGC3TJECFCYRKKYJHKHMQCT5E.jpg?auth=d853e24b75aa30965879173900ddcacc91f29e96be4c0c2ddd11c50ef152cc10&width=3200&height=2400&quality=75&smart=true"
-                        alt="Foto cliente B" />
+                    <img src="img/sergio.png" alt="Sergio" />
                     <div>
-                        <strong>Jorge P.</strong>
+                        <strong>Sergio A.</strong>
                         <div class="stars">★★★★☆</div>
-                        <p>Buen lugar y actividades muy divertidas. Volveremos sin duda.</p>
+                        <p>Los niños fueron pura energía. ¡Nos divertimos tanto!</p>
+                    </div>
+                </article>
+
+                <article class="testimonial">
+                    <img src="img/carlos.png" alt="Carlos" />
+                    <div>
+                        <strong>Carlos A.</strong>
+                        <div class="stars">★★★★★</div>
+                        <p>Cada rincón está pensado para que se sientan seguros, libres y felices.</p>
+                    </div>
+                </article>
+
+                <article class="testimonial">
+                    <img src="img/sofia.png" alt="Sofía" />
+                    <div>
+                        <strong>Sofía C.</strong>
+                        <div class="stars">★★★★☆</div>
+                        <p>¡La música y los efectos hacen que todo cobre vida!</p>
+                    </div>
+                </article>
+
+                <article class="testimonial">
+                    <img src="img/brissa.png" alt="Brissa" />
+                    <div>
+                        <strong>Brissa F.</strong>
+                        <div class="stars">★★★★★</div>
+                        <p>Ver a los peques disfrutar su comida me llena el corazón. ¡Todo hecho con amor!</p>
+                    </div>
+                </article>
+
+                <article class="testimonial">
+                    <img src="img/deva.png" alt="Deva" />
+                    <div>
+                        <strong>Deva G.</strong>
+                        <div class="stars">★★★★★</div>
+                        <p>Esta diseñado para cada experiencia como si fuera nuestra propia familia.</p>
                     </div>
                 </article>
             </div>
@@ -203,18 +247,20 @@
         <!-- FAQ -->
         <section id="faq" class="section faq wrap">
             <h2>Preguntas Frecuentes</h2>
-            <details>
-                <summary>¿Cuál es la capacidad máxima por evento?</summary>
-                <p>Nuestra sala principal tiene capacidad para 60 niños y 80 adultos en espacios adicionales.</p>
-            </details>
-            <details>
-                <summary>¿Ofrecen servicio de catering?</summary>
-                <p>Sí, ofrecemos paquetes de alimentos para niños y adultos (opciones vegetarianas disponibles).</p>
-            </details>
-            <details>
-                <summary>¿Puedo decorar según un tema específico?</summary>
-                <p>Claro, contamos con paquetes temáticos y puedes personalizar decoraciones y actividades.</p>
-            </details>
+            <div class="faq-list">
+                <details>
+                    <summary>¿Cuál es la capacidad máxima por evento?</summary>
+                    <p>Nuestra sala principal tiene capacidad para 60 niños y 80 adultos en espacios adicionales.</p>
+                </details>
+                <details>
+                    <summary>¿Ofrecen servicio de catering?</summary>
+                    <p>Sí, ofrecemos paquetes de alimentos para niños y adultos (opciones vegetarianas disponibles).</p>
+                </details>
+                <details>
+                    <summary>¿Puedo decorar según un tema específico?</summary>
+                    <p>Claro, contamos con paquetes temáticos y puedes personalizar decoraciones y actividades.</p>
+                </details>
+            </div>
         </section>
 
         <!-- Cotización -->
@@ -290,8 +336,5 @@
         </div>
         <p class="copyright">© <span id="currentYear"></span> Divertiplay</p>
     </footer>
-
-    <script src="{% static 'js/script.js' %}"></script>
 </body>
-
 </html>
