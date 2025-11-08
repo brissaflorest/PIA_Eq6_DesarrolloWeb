@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Reservaciones</title>
+    <link rel="stylesheet" href="{% static 'css/stylelistar.css' %}">
+    <script src="{% static 'js/confirmar.js' %}"></script>
+</head>
+
+<body>
+    {% include 'menu.html' %}
+    <h1>Lista de Reservaciones</h1>
+    <a class="boton-nuevo" href="{% url 'crear' %}">Nueva Reservación</a>
+
+    <table class="tabla-productos">
+        <thead>
+            <tr>
+                <th>Nombre del Cliente</th>
+                <th>Fecha del Evento</th>
+                <th># Invitados</th>
+                <th>Tipo de Evento</th>
+                <th>Teléfono</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservacion in reservaciones %}
+            <tr>
+                <td>{{ reservacion.nombre_cliente }}</td>
+                <td>{{ reservacion.fecha_evento }}</td>
+                <td>{{ reservacion.num_invitados }}</td>
+                <td>{{ reservacion.tipo_evento }}</td>
+                <td>{{ reservacion.telefono_contacto }}</td>
+                <td>{{ reservacion.estatus }}</td>
+                <td>
+                    <a class="boton-editar" href="{% url 'editar' reservacion.id %}">Editar</a>
+                    <a class="boton-eliminar" href="{% url 'eliminar' reservacion.id %}" onclick="return confirmarEliminacion()">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center text-muted">No hay reservaciones registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

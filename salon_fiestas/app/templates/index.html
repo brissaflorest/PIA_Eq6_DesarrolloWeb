@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Divertiplay - Salón de eventos infantiles</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <meta name="description"
+        content="Divertiplay - Salón de eventos infantiles. Servicios, galería, testimonios, ubicación y cotizador interactivo." />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <img src="{% static 'img/LOGO-removebg-preview.png' %}" alt="Logo Diverti-tuplas" class="logo" />
+            <nav class="main-nav" aria-label="Menú principal">
+                <a id="nosotros-nav" href="#nosotros">Nosotros</a>
+                <a id="servicios-nav" href="#servicios">Servicios</a>
+                <a id="galeria-nav" href="#galeria">Galería</a>
+                <a id="testimonios-nav" href="#testimonios">Testimonios</a>
+                <a id="faq-nav" href="#faq">FAQ</a>
+                <a id="contacto-nav" href="#contacto">Contacto</a>
+                <a id="cotizacion-nav" href="#cotizacion">Cotización</a>
+            </nav>
+            <div class="header-actions">
+                <button id="themeToggle" aria-pressed="false" title="Alternar tema">🌗</button>
+                <a href="{% url 'login' %}" class="btn" aria-label="Iniciar Sesión">☰</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <!--Los span son las bolitas-->
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:28;"></span>
+
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+                <h1 class="accent">¡Bienvenidos a Diverti-Tuplas!</h1>
+                <p class="lead">El mejor lugar para festejos infantiles: juegos, shows, y experiencias inolvidables.</p>
+             
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+    
+            </div>
+        </section>
+
+        <!-- Nosotros -->
+        <section id="nosotros" class="section nosotros wrap">
+            <h2>Nosotros</h2>
+            <div class="nosotros-grid">
+                <div class="nosotros-text">
+                    <p><strong>Misión:</strong> Crear experiencias seguras, divertidas y memorables para niñas y niños,
+                        fomentando la creatividad y la convivencia familiar.</p>
+                    <p><strong>Visión:</strong> Ser el salón de referencia en eventos infantiles en la región,
+                        reconocidos por la calidad de nuestras instalaciones y servicios.</p>
+                    <p><strong>Valores:</strong> Seguridad, diversión, inclusión y profesionalismo.</p>
+                </div>
+                <div class="nosotros-media">
+                    <!-- placeholder image, reemplazar por la imagen de las mascotas luego -->
+                    <img id="heroGif"
+                    src="{% static 'img/GIF_BG_OSCURO.gif' %}"
+                    data-dark="{% static 'img/GIF_BG_OSCURO.gif' %}"
+                    data-light="{% static 'img/GIF_BG_CLARO.gif' %}"
+                    alt="GIF de tuplin y tuplita"
+                    width="200" height="300">
+                </div>
+            </div>
+        </section>
+
+        <!-- Instalaciones / Galería destacada -->
+        <section id="instalaciones" class="section instalaciones wrap">
+            <h2>Instalaciones</h2>
+            <div class="insta-gallery">
+                <img src="{% static 'img/Salon1.jpg' %}" alt="Instalación 1" />
+                <img src="{% static 'img/Salon2.jpg' %}" alt="Instalación 2" />
+                <img src="{% static 'img/salon3.jpg' %}" alt="Instalación 3" />
+                <img src="{% static 'img/salon4.jpg' %}" alt="Instalación 4" />
+            </div>
+        </section>
+
+        <!-- Servicios (dinámico) -->
+        <section id="servicios" class="section servicios wrap">
+            <h2>Servicios</h2>
+            <p class="small">Selecciona un servicio para ver detalles y usarlo en el cotizador.</p>
+            <div id="servicios-list" class="servicios-list" aria-live="polite">
+                <!-- tarjetas pobladas por JS -->
+            </div>
+        </section>
+
+        <!-- Galería -->
+        <section id="galeria" class="section galeria wrap">
+            <h2>Galería</h2>
+            <div class="grid galeria-grid">
+                <img src="{% static 'img/evento1.jpg' %}" alt="Evento 1" />
+                <img src="{% static 'img/evento2.jpg' %}" alt="Evento 2" />
+                <img src="{% static 'img/evento3.jpg' %}" alt="Evento 3" />
+                <img src="{% static 'img/evento4.jpg' %}" alt="Evento 4" />
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section id="testimonios" class="section testimonios wrap">
+            <h2>Testimonios</h2>
+            <div class="testimonials">
+                <article class="testimonial">
+                    <img src="{% static 'img/tamara.png' %}" alt="Foto cliente A" />
+                    <div>
+                        <strong>María G.</strong>
+                        <div class="stars">★★★★★</div>
+                        <p>Celebramos el cumpleaños de mi hija y todo salió perfecto. El equipo super atento.</p>
+                    </div>
+                </article>
+                <article class="testimonial">
+                    <img src="https://elcomercio.pe/resizer/v2/FWGC3TJECFCYRKKYJHKHMQCT5E.jpg?auth=d853e24b75aa30965879173900ddcacc91f29e96be4c0c2ddd11c50ef152cc10&width=3200&height=2400&quality=75&smart=true"
+                        alt="Foto cliente B" />
+                    <div>
+                        <strong>Jorge P.</strong>
+                        <div class="stars">★★★★☆</div>
+                        <p>Buen lugar y actividades muy divertidas. Volveremos sin duda.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section faq wrap">
+            <h2>Preguntas Frecuentes</h2>
+            <details>
+                <summary>¿Cuál es la capacidad máxima por evento?</summary>
+                <p>Nuestra sala principal tiene capacidad para 60 niños y 80 adultos en espacios adicionales.</p>
+            </details>
+            <details>
+                <summary>¿Ofrecen servicio de catering?</summary>
+                <p>Sí, ofrecemos paquetes de alimentos para niños y adultos (opciones vegetarianas disponibles).</p>
+            </details>
+            <details>
+                <summary>¿Puedo decorar según un tema específico?</summary>
+                <p>Claro, contamos con paquetes temáticos y puedes personalizar decoraciones y actividades.</p>
+            </details>
+        </section>
+
+        <!-- Cotización -->
+        <section id="cotizacion" class="section cotizacion wrap">
+            <h2>Cotización interactiva</h2>
+            <form id="cotizador" class="cotizador-form" onsubmit="return false;">
+                <label for="servicioSelect">Servicio</label>
+                <select id="servicioSelect" required>
+                    <option value="">-- Seleccione un servicio --</option>
+                </select>
+
+                <label for="cantidadInput">Cantidad / Duración (ej. horas o unidades)</label>
+                <input id="cantidadInput" type="number" min="1" value="1" required />
+
+                <fieldset class="discount">
+                    <legend>Descuento</legend>
+                    <label><input type="radio" name="discount" value="0" checked /> 0%</label>
+                    <label><input type="radio" name="discount" value="5" /> 5%</label>
+                    <label><input type="radio" name="discount" value="10" /> 10%</label>
+                    <label><input type="radio" name="discount" value="15" /> 15%</label>
+                </fieldset>
+
+                <div class="actions">
+                    <button id="calcularBtn" type="button">Calcular cotización</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="section contacto wrap">
+            <h2>Contacto</h2>
+            <form id="contactForm" class="contact-form" novalidate>
+                <label for="name">Nombre</label>
+                <input id="name" name="name" type="text" required minlength="2" />
+
+                <label for="email">Correo</label>
+                <input id="email" name="email" type="email" required />
+
+                <label for="telefono">Teléfono</label>
+                <input id="telefono" name="telefono" type="tel" pattern="^\d{10}$" />
+
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+
+        <!-- Ubicación -->
+        <section id="ubicacion" class="section ubicacion wrap">
+            <h2>Ubicación</h2>
+            <p>Nuestra dirección: Av. Ejemplo 123, Ciudad, Estado. Haz zoom o muévete en el mapa.</p>
+            <!-- Google Maps embed: reemplaza coords/URL por la tuya -->
+            <div class="map-wrapper" aria-hidden="false">
+                <iframe title="Mapa Divertiplay"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3332.1963975391745!2d-100.31107042460069!3d25.72827697737294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866295094da26085%3A0x7262d01b7781d627!2sFACPYA%20Facultad%20de%20Contadur%C3%ADa%20P%C3%BAblica%20y%20Administraci%C3%B3n!5e1!3m2!1ses!2smx!4v1761534621646!5m2!1ses!2smx"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <div>
+                <h3>Contacto</h3>
+                <p>Tel: (81) 1234-5678</p>
+                <p>Email: info@divertiplay.com</p>
+            </div>
+            <div>
+                <h3>Síguenos</h3>
+                <p>Instagram • Facebook • TikTok</p>
+            </div>
+        </div>
+        <p class="copyright">© <span id="currentYear"></span> Divertiplay</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

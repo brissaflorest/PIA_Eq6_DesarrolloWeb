@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    {% include 'menu.html' %}
+    <div class="form-container">
+        <h1>Editar Reservación</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="txtNombre_Cliente">Nombre del Cliente:</label>
+            <input type="text" id="txtNombre_Cliente" name="txtNombre_Cliente" value="{{reservacion.nombre_cliente}}" required pattern="[A-Za-z\s]+">
+
+            <label for="txtFecha">Fecha:</label>
+            <input type="datetime-local" id="txtFecha" name="txtFecha" value="{{reservacion.fecha_evento|date:'Y-m-d'}}T{{reservacion.fecha_evento|time:'H:i'}}" required>
+            {% if errores.txtFecha %}
+                <p class="error">{{ errores.txtFecha }}</p>
+            {% endif %}
+
+            <label for="txtNum_Inv">Numero de Invitados:</label>
+            <input type="number" id="txtNum_Inv" name="txtNum_Inv" value="{{reservacion.num_invitados}}" required pattern="[0-9]+ o \d+">
+
+
+            <label for="ddlTipo_Evento">Tipo de Evento:</label>
+            <select name="ddlTipo_Evento" required>
+                <option value="">Selecciona el Tipo de Evento</option>
+                <option value="Paquete Basico" {% if reservacion.tipo_evento == "Paquete Basico" %}selected{% endif %}>Paquete Básico</option>
+                <option value="Paquete Premium" {% if reservacion.tipo_evento == "Paquete Premium" %}selected{% endif %}>Paquete Premium</option>
+                <option value="Paquete VIP" {% if reservacion.tipo_evento == "Paquete VIP" %}selected{% endif %}>Paquete VIP</option>
+            </select><br>
+            
+
+            <label for="txtTelefono_Contacto">Telefono:</label>
+            <input type="text" id="txtTelefono_Contacto" name="txtTelefono_Contacto" value="{{reservacion.telefono_contacto}}" required pattern="^\d{10}$">
+            {% if errores.txtTelefono_Contacto %}
+                <p class="error">{{ errores.txtTelefono_Contacto }}</p>
+            {% endif %}
+
+            <label for="ddlestatus">Estatus:</label>
+            <select name="ddlestatus" required>
+                <option value="">Selecciona un Estatus</option>
+                <option value="Pendiente" {% if reservacion.estatus == "Pendiente" %}selected{% endif %}>Pendiente</option>
+                <option value="Listo" {% if reservacion.estatus == "Listo" %}selected{% endif %}>Listo</option>
+            </select><br>
+            
+            <button type="submit">Actualizar</button>
+            <button><a href="{% url 'listar' %}" class="btn">Volver</a></button>
+        </form>
+    </div>
+</body>
+</html>

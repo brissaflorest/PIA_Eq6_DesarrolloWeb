@@ -1,0 +1,140 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+    padding: 2rem;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #00796b;
+    margin-bottom: 1rem;
+}
+
+.boton-nuevo {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #00796b;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-nuevo:hover {
+    background-color: #004d40;
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+.tabla-productos th {
+    background-color: #b2dfdb;
+    color: #004d40;
+    font-weight: bold;
+}
+
+.boton-editar,
+.boton-eliminar {
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.boton-editar {
+    background-color: #ffeb3b;
+    color: #333;
+}
+
+.boton-editar:hover {
+    background-color: #fdd835;
+}
+
+.boton-eliminar {
+    background-color: #e57373;
+    color: white;
+}
+
+.boton-eliminar:hover {
+    background-color: #d32f2f;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.boton-listo {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.estatus-listo {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.navbar {
+  background-color: #b2dfdb;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  width: fit-content;
+  margin: 10px auto;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: center;
+}
+
+/* Enlaces del menú */
+.navbar-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #00796b;
+}
+
+.nav-var {
+  color: #00796b;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Enlace deshabilitado */
+.nav-link.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
