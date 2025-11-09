@@ -174,12 +174,12 @@ body{
 
 #testimonios-nav{
   font-weight:700;
-  background:var(--accent-4);
+  background:var(--accent-5);
 }
 
 #faq-nav{
   font-weight:700;
-  background:var(--accent-5);
+  background:var(--accent-4);
 }
 
 #cotizacion-nav{
@@ -540,7 +540,7 @@ table, th, td{
 .section.testimonios h2 {
   text-align: center;
   font-size: 2.5rem;
-  color: #eb5e5a;
+  color: #FBB92A;;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -552,10 +552,10 @@ table, th, td{
 }
 
 .testimonial {
-  background: linear-gradient(to right, #ffc1bf, #ff8783);
+  background: linear-gradient(to right, #FFF8F0, #fff3ad);
   border-radius: 16px;
   padding: 1rem;
-  box-shadow: 0 4px 12px rgb(235, 94, 90);
+  box-shadow: 0 4px 12px rgba(244, 244, 21, 0.934);
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -567,11 +567,14 @@ table, th, td{
 }
 
 .testimonial img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
+  aspect-ratio: 1 / 1;
+  display: block;
 }
+
 
 .testimonial strong {
   color: #000000;
@@ -588,7 +591,7 @@ table, th, td{
 .section.faq h2 {
   text-align: center;
   font-size: 2.5rem;
-  color: #FBB92A;
+  color: #EB5E5A;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -600,11 +603,12 @@ table, th, td{
 }
 
 .faq-list details {
-  background: linear-gradient(to right, #FFF8F0, #fff3ad);
-  border: 2px solid #FFD700;
+  background: linear-gradient(to right, #ffc1bf, #ff8783);
+  border-radius: 16px;
+  border: 2px solid #EB5E5A;
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.1);
+  box-shadow: 0 4px 8px rgb(235, 94, 90);
   transition: background-color 0.3s ease;
 }
 
@@ -615,14 +619,14 @@ table, th, td{
 .faq-list summary {
   font-weight: bold;
   font-size: 1.1rem;
-  color: #FBB92A;
+  color: #EB5E5A;
   cursor: pointer;
   list-style: none;
 }
 
 .faq-list p {
   margin-top: 0.5rem;
-  color: #444;
+  color: black;
   line-height: 1.5;
 }
 

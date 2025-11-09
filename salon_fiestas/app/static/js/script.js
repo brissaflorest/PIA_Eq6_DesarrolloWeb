@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Simulación de servicios (en Django vendrá desde API)
   const servicios = [
-    { id: 1, nombre: "Paquete Básico", descripcion: "Sala 2 horas, decoración básica, animador.", precio: 1200.00, duracion: 2, caracteristicas: ["Decoración", "Animador"] },
-    { id: 2, nombre: "Paquete Premium", descripcion: "Sala 3 horas, mesa de dulces, show temático.", precio: 2200.00, duracion: 3, caracteristicas: ["Mesa de dulces", "Show temático"] },
-    { id: 3, nombre: "Show de Magia", descripcion: "Show interactivo de 45 minutos con mago profesional.", precio: 800.00, duracion: 0.75, caracteristicas: ["Show", "Interacción"] },
-    { id: 4, nombre: "Taller de Arte", descripcion: "Taller guiado de 60 minutos para grupos.", precio: 500.00, duracion: 1, caracteristicas: ["Material incluido", "Monitor"] }
+    { id: 1, nombre: "Paquete Básico", descripcion: "Precio por hora, decoración básica, animador.", precio: 400.00, caracteristicas: ["Decoración", "Animador"] },
+    { id: 2, nombre: "Paquete Premium", descripcion: "Precio por hora, mesa de dulces, show temático.", precio: 800.00,caracteristicas: ["Mesa de dulces", "Show temático"] },
+    { id: 3, nombre: "Show de Magia", descripcion: "Precio por hora, show interactivo con mago profesional.", precio: 1000.00,caracteristicas: ["Show", "Interacción"] },
+    { id: 4, nombre: "Pinta Caritas", descripcion: "Precio por hora, pinta caritas para la fiesta.", precio: 500.00,caracteristicas: ["Material incluido", "Buena Calidad"] }
   ];
 
   // Poblado de la sección de servicios
