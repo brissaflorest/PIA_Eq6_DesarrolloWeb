@@ -19,9 +19,10 @@
             <label for="{{ form.password.id_for_label }}">Contraseña:</label>
             {{ form.password }}
 
-            <label for="{{ form.role.id_for_label }}">Tipo de Usuario:</label>
+            <!--<label for="{{ form.role.id_for_label }}">Tipo de Usuario:</label>-->
+            <div style="display: none;">    
             {{ form.role }}
-
+            </div>
             <button type="submit">Entrar</button>
         </form>
     </div>
