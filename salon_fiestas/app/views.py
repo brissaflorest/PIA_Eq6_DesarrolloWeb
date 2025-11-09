@@ -27,7 +27,7 @@ def crear_reservacion(request):
     if request.method == 'POST':
         nombre_cliente = request.POST['txtNombre_Cliente']
         fecha_evento = request.POST['txtFecha']
-        duracion_horas = request.POST['ddlDuracion']
+        duracion_horas = request.POST['txtDuracion']
         num_invitados = request.POST['txtNum_Inv']
         tipo_evento = request.POST['ddlTipo_Evento']
         telefono_contacto = request.POST['txtTelefono_Contacto']
@@ -45,8 +45,8 @@ def crear_reservacion(request):
             errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
             return render(request, 'crear.html', {'errores': errores})
         
-        if duracion_horas_int <= 0:
-            errores['ddlDuracion'] = 'La duración debe ser un entero positivo.'
+        if duracion_horas_int <= 0 or duracion_horas_int > 6:
+            errores['txtDuracion'] = 'La duración debe ser válida.'
             return render(request, 'crear.html', {'errores': errores})
         
         num_invitados = int(request.POST['txtNum_Inv'], 0)
@@ -81,7 +81,7 @@ def editar_reservacion(request, id):
     if request.method == 'POST':
         reservacion.nombre_cliente = request.POST['txtNombre_Cliente']
         reservacion.fecha_evento = request.POST['txtFecha']
-        reservacion.duracion_horas = request.POST['ddlDuracion']
+        reservacion.duracion_horas = request.POST['txtDuracion']
         reservacion.num_invitados = request.POST['txtNum_Inv']
         reservacion.tipo_evento = request.POST['ddlTipo_Evento']
         reservacion.telefono_contacto = request.POST['txtTelefono_Contacto']
@@ -94,7 +94,12 @@ def editar_reservacion(request, id):
 
         if fecha_evento_aware < timezone.now():
             errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
-            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})   
+            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
+        
+        if duracion_horas_int <= 0 or duracion_horas_int > 6:
+            errores['txtDuracion'] = 'La duración debe ser válida.'
+            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
+        
         num_invitados = int(request.POST['txtNum_Inv'], 0)
         if num_invitados <= 0:
             errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo.'

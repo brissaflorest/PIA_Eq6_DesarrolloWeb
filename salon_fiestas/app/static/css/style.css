@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 /*Variables Globales*/
 :root{
   /* paleta base (light) y variables para acentos llamativos */
@@ -379,8 +382,12 @@ body{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.section.nosotros strong {
+  color: #FBB92A; 
+}
+
 .section.nosotros p {
-  color: var(--text);
+  color: var(--text); 
 }
 
 .nosotros-grid{
@@ -473,6 +480,13 @@ body{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+caption {
+  text-align: center;
+  font-size: 1rem;
+  color: #9ec5e9;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 table, th, td{
   margin: auto;
   border: 1px solid #05353426;
@@ -480,8 +494,20 @@ table, th, td{
   text-align: left;
   border-radius: 10px;
   box-shadow: 0 5px 15px var(--accent-2);
-  background: linear-gradient(to right, #d0e8ff, #c0e1ff);
+  background: linear-gradient(to right, #d7ecff, #cbe6ff);
   color: rgb(0, 7, 26);
+}
+
+table {
+  width: 100%;
+  max-width: 900px; /* o lo que se vea bien en tu layout */
+  margin: auto;
+  border-collapse: separate; /* o 'collapse' si prefieres bordes unidos */
+  border-spacing: 5px 5px; /* espacio entre filas si usas 'separate' */
+}
+
+th {
+  text-align: center;
 }
 
 /* GALERÍA */

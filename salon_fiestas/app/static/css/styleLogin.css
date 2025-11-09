@@ -15,6 +15,7 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 .login-container h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     color: #344069;
     margin-bottom: 15px;
@@ -22,6 +23,7 @@ body {
     font-weight: 600;
 }
 .login-container label {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: block;
     margin-top: 12px;
     font-weight: 500;
@@ -29,7 +31,7 @@ body {
 }
 .login-container input,
 .login-container select {
-    width: 100%;
+    width: 95%;
     padding: 8px;
     margin-top: 5px;
     border: 1.5px solid #a8c2e0;
@@ -49,6 +51,7 @@ body {
     color: #a0b4c8;
 }
 .login-container button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 20px;
     width: 100%;
     padding: 10px;
@@ -57,7 +60,26 @@ body {
     border: none;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 13px;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.login-container a.nav-link {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 20px;
+    width: 94%;
+    padding: 10px;
+    background-color: #c2d8df;
+    color: rgb(69, 96, 146);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
 }

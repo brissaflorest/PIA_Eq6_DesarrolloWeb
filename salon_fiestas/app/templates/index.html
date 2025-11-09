@@ -131,11 +131,12 @@
             <h2>Nosotros</h2>
             <div class="nosotros-grid">
                 <div class="nosotros-text">
-                    <p><strong>Misión:</strong> Crear experiencias seguras, divertidas y memorables para niñas y niños,
+                    <p><strong>Haz click en los textos para cambiar su tamaño.</strong></p>
+                    <p onclick="cambiarTamaño(this)"><strong>Misión:</strong> Crear experiencias seguras, divertidas y memorables para niñas y niños,
                         fomentando la creatividad y la convivencia familiar.</p>
-                    <p><strong>Visión:</strong> Ser el salón de referencia en eventos infantiles en la región,
+                    <p onclick="cambiarTamaño(this)"><strong>Visión:</strong> Ser el salón de referencia en eventos infantiles en la región,
                         reconocidos por la calidad de nuestras instalaciones y servicios.</p>
-                    <p><strong>Valores:</strong> Seguridad, diversión, inclusión y profesionalismo.</p>
+                    <p onclick="cambiarTamaño(this)"><strong>Valores:</strong> Seguridad, diversión, inclusión y profesionalismo.</p>
                 </div>
 
                 <div class="nosotros-media">
@@ -283,15 +284,15 @@
 
         <!-- Cotización -->
         <section id="cotizacion" class="section cotizacion wrap">
-            <h2>Cotización interactiva</h2>
+            <h2>Cotización</h2>
             <form id="cotizador" class="cotizador-form" onsubmit="return false;">
                 <label for="servicioSelect">Servicio</label>
                 <select id="servicioSelect" required>
                     <option value="">-- Seleccione un servicio --</option>
                 </select>
 
-                <label for="cantidadInput">Cantidad / Duración (ej. horas o unidades)</label>
-                <input id="cantidadInput" type="number" min="1" value="1" required />
+                <label for="cantidadInput">Duración (horas)</label>
+                <input id="cantidadInput" name="txtDuracion" type="number"/>
 
                 <fieldset class="discount">
                     <legend>Descuento</legend>
@@ -312,7 +313,7 @@
             <h2>Contacto</h2>
             <form id="contactForm" class="contact-form" novalidate>
                 <label for="name">Nombre</label>
-                <input id="name" name="name" type="text" required minlength="2" />
+                <input id="name" name="name" type="text" pattern="[A-Za-z]+" required minlength="2"/>
 
                 <label for="email">Correo</label>
                 <input id="email" name="email" type="email" required />

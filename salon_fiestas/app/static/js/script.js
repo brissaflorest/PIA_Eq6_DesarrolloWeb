@@ -5,6 +5,14 @@
  - Toggle de tema (claro/oscuro).
 */
 
+function cambiarTamaño(elemento) {
+  if (elemento.style.fontSize === '25px') {
+    elemento.style.fontSize = '20px';
+  } else {
+    elemento.style.fontSize = '25px';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Año en footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -44,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sel = servicioSelect.value;
     const cantidad = Number(document.getElementById('cantidadInput').value);
     if (!sel) { alert('Por favor selecciona un servicio.'); return; }
-    if (!cantidad || cantidad <= 0) { alert('La cantidad/duración debe ser mayor a 0.'); return; }
+    if (!cantidad || cantidad <= 0 || cantidad > 6) { alert('La duración debe estar entre 1 y 6 horas.'); return; }
 
     const servicio = servicios.find(s => String(s.id) === String(sel));
     if (!servicio) { alert('Servicio no encontrado.'); return; }
@@ -67,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alert(mensaje);
   });
 
-  // Formulario de contacto (validaciones básicas)
+  // CONTACTO (validaciones básicas)
   const contactForm = document.getElementById('contactForm');
   contactForm.addEventListener('submit', (ev) => {
     ev.preventDefault();
@@ -76,12 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email');
     const tel = document.getElementById('telefono');
     const msg = document.getElementById('message');
+    const valor = name.value.trim();
    
 
-    if (!name.value.trim() || name.value.trim().length < 2) { alert('Por favor escribe tu nombre (mínimo 2 caracteres).'); name.focus(); return; }
+    if (!valor || valor.length < 3 || /\d/.test(valor)) {alert('Ingrese un nombre válido.'); name.focus(); return;}
     if (!validateEmail(email.value.trim())) { alert('Ingresa un correo válido.'); email.focus(); return; }
-    if (!tel.value.trim() || tel.value.trim().length !== 10) { alert('Si proporcionas un teléfono, debe tener al menos 10 dígitos.'); tel.focus(); return; }
-    if (!msg.value.trim() || msg.value.trim().length < 6) { alert('Escribe un mensaje más detallado (mínimo 6 caracteres).'); msg.focus(); return; }
+    if (!tel.value.trim() || tel.value.trim().length !== 10) { alert('Ingresa un teléfono válido.'); tel.focus(); return; }
+    if (!msg.value.trim() || msg.value.trim().length < 6) { alert('Escribe un mensaje más detallado.'); msg.focus(); return; }
 
     // Simulación de envío
     alert('Mensaje enviado con éxito. ¡Gracias por contactarnos!');
