@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from django.utils import timezone 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import Group, User
+from django.db import models
 
 
 
@@ -33,16 +34,19 @@ def crear_reservacion(request):
         telefono_contacto = request.POST['txtTelefono_Contacto']
         estatus = request.POST['ddlestatus']
         
-        
-        errores = {}
-        
         fecha_evento_dt = datetime.strptime(fecha_evento, '%Y-%m-%dT%H:%M')
         ## Convierte la fecha naive del formulario en una fecha aware usando make_aware
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt)
         duracion_horas_int = int(duracion_horas)
 
+        hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
+        
+
+        errores = {}
+            
+
         if fecha_evento_aware < timezone.now():
-            errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
+            errores['txtFecha'] = 'No se puede registrar una fecha anterior o igual a la actual.'
             return render(request, 'crear.html', {'errores': errores})
         
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
@@ -59,18 +63,21 @@ def crear_reservacion(request):
             return render(request, 'crear.html', {'errores': errores})
         if RESERVACION.objects.filter(fecha_evento=fecha_evento_aware).exists():
             errores['txtFecha'] = 'Esta fecha ya está registrada.'
-            return render(request, 'crear.html', {'errores': errores})
+            return render(request, 'crear.html', {'errores': errores})  
         
-        hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
+        reservaciones_existentes=RESERVACION.objects.all()
+        for r in reservaciones_existentes:
+            inicio_evento_existente = r.fecha_evento
+            fin_existente = inicio_evento_existente + timedelta(hours=r.duracion_horas)
 
-        reservaciones_existentes = RESERVACION.objects.filter(
-            fecha_evento__range=(fecha_evento_aware, hora_fin_evento_propuesto)
-        ).exists()
-
-        if reservaciones_existentes:
-            errores['txtFecha'] = f'Ya existe una reservación con este horario (Duración: {duracion_horas_int}h).'
-            return render(request, 'crear.html', {'errores': errores})
-        
+            if (inicio_evento_existente < hora_fin_evento_propuesto and fin_existente > fecha_evento_aware):
+                errores['txtFecha'] = (
+                    f'Ya existe una reservación en el horario de {inicio_evento_existente.strftime("%I:%M %p")} '
+                    f'a {fin_existente.strftime("%I:%M %p")}. '
+                    f'Por favor elige otro horario.'
+                )
+                return render(request, 'crear.html', {'errores': errores})
+    
 
         RESERVACION.objects.create(nombre_cliente=nombre_cliente, fecha_evento=fecha_evento_aware, duracion_horas=duracion_horas_int, num_invitados=num_invitados, tipo_evento=tipo_evento, telefono_contacto=telefono_contacto, estatus=estatus)
         return redirect('listar')
@@ -87,10 +94,13 @@ def editar_reservacion(request, id):
         reservacion.telefono_contacto = request.POST['txtTelefono_Contacto']
         reservacion.estatus = request.POST['ddlestatus']
         
-        errores = {}
         fecha_evento_dt = datetime.strptime(reservacion.fecha_evento, '%Y-%m-%dT%H:%M')
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt) # HAZLA AWARE
         duracion_horas_int = int(reservacion.duracion_horas)
+        hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
+
+        errores = {}
+        
 
         if fecha_evento_aware < timezone.now():
             errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
@@ -111,16 +121,25 @@ def editar_reservacion(request, id):
         if RESERVACION.objects.filter(fecha_evento=fecha_evento_aware).exclude(id=reservacion.id).exists():
             errores['txtFecha'] = 'Esta fecha ya está registrada.'
             return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
-        
-        hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
+              
+        reservaciones_existentes = RESERVACION.objects.exclude(id=reservacion.id)
+        for r in reservaciones_existentes:
+            inicio_evento_existente = r.fecha_evento
+            fin_existente = inicio_evento_existente + timedelta(hours=r.duracion_horas)
 
-        reservaciones_existentes = RESERVACION.objects.filter(
-            fecha_evento__range=(fecha_evento_aware, hora_fin_evento_propuesto)
-        ).exclude(id=reservacion.id).exists()
-        
-        reservacion.fecha_evento = fecha_evento_aware # ASIGNALA AWARE
+            if (inicio_evento_existente < hora_fin_evento_propuesto and fin_existente > fecha_evento_aware):
+                errores['txtFecha'] = (
+                    f'Ya existe una reservación en el horario de {inicio_evento_existente.strftime("%I:%M %p")} '
+                    f'a {fin_existente.strftime("%I:%M %p")}. '
+                    f'Por favor elige otro horario.'
+                )
+                return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
+            
+        reservacion.fecha_evento = fecha_evento_aware
         reservacion.duracion_horas = duracion_horas_int
+        reservacion.num_invitados = num_invitados
         reservacion.save()
+
         return redirect('listar')
     return render(request, 'editar.html', {'reservacion': reservacion})
 
