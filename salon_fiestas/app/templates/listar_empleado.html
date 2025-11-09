@@ -25,6 +25,7 @@
             <tr>
                 <th>Cliente</th>
                 <th>Fecha</th>
+                <th>Duración</th>
                 <th>Invitados</th>
                 <th>Tipo</th>
                 <th>Teléfono</th>
@@ -37,12 +38,13 @@
             <tr>
                 <td>{{ reservacion.nombre_cliente }}</td>
                 <td>{{ reservacion.fecha_evento }}</td>
+                <td>{{ reservacion.duracion_horas }}</td>
                 <td>{{ reservacion.num_invitados }}</td>
                 <td>{{ reservacion.tipo_evento }}</td>
                 <td>{{ reservacion.telefono_contacto }}</td>
                 <td>{{ reservacion.estatus }}</td>
                 <td>
-                    {% if reservacion.estatus != "listo" %}
+                    {% if reservacion.estatus != "Listo" %}
                     <form method="post" action="{% url 'marcar_listo' reservacion.id %}">
                         {% csrf_token %}
                         <button class="boton-listo" type="submit">Marcar como listo</button>

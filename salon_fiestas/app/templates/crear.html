@@ -21,6 +21,14 @@
                 <p class="error">{{ errores.txtFecha }}</p>
             {% endif %}
 
+            <label for="ddlDuracion">Duración:</label>
+            <select name="ddlDuracion" required>
+                <option value="">Selecciona la duración del Evento</option>
+                <option value="1">1 Hora</option>
+                <option value="2">2 Horas</option>
+                <option value="3">3 Horas</option>
+            </select><br>
+
             
             <label for="txtNum_Inv">Numero de Invitados:</label>
             <input type="number" id="txtNum_Inv" name="txtNum_Inv" required pattern="[0-9]+ o \d+">

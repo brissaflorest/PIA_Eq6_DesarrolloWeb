@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -8,6 +9,8 @@ class RESERVACION(models.Model):
 
     fecha_evento = models.DateTimeField()
 
+    duracion_horas = models.IntegerField(default=4)
+
     num_invitados = models.IntegerField()
 
     tipo_evento = models.CharField(max_length=50)
@@ -16,9 +19,17 @@ class RESERVACION(models.Model):
 
     estatus = models.CharField(max_length=20, default='Pendiente')
 
+
     def __str__(self):
 
         return self.nombre_cliente
+    
+    @property
+    def estatus_actualizado(self):
+        """Retorna el estatus actualizado basado en la fecha del evento."""
+        if self.fecha_evento < timezone.now():
+            return "Listo"
+        return self.estatus
     
 class SHOW(models.Model):
 
