@@ -38,7 +38,7 @@
             {% for reservacion in reservaciones %}
             <tr>
                 <td>{{ reservacion.nombre_cliente }}</td>
-                <td>{{ reservacion.fecha_evento }}</td>
+                <td>{{ reservacion.fecha_evento|date:"Y-m-d H:i" }}</td>
                 <td>{{ reservacion.duracion_horas }}</td>
                 <td>{{ reservacion.num_invitados }}</td>
                 <td>{{ reservacion.tipo_evento }}</td>
