@@ -11,10 +11,9 @@ from django.contrib.auth.models import Group, User
 
 
 # Create your views here.
-
-
 def inicio(request):
-    return render(request, 'index.html')
+    shows = SHOW.objects.all()
+    return render(request, 'index.html' , {'shows': shows})
 
 def listar_reservaciones(request):
     reservaciones = RESERVACION.objects.all()

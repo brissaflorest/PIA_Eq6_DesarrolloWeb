@@ -9,6 +9,7 @@
   /* acentos coloridos (brillantes) */
   --accent-1: #2BB39B; /* GRASS */
   --accent-2: #82B3E1; /* SKY */
+  --accent-2-1: #9ec5e9; /* LIGHT SKY */
   --accent-3: #F5B5CC; /* CANDY */
   --accent-4: #EB5E5A; /* CRAYON */
   --accent-5: #FBB92A; /* SUN */
@@ -465,22 +466,23 @@ body{
 }
 
 /* SERVICIOS */
-.servicios-list{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:1rem;
+.section.servicios h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--accent-2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-.serv-card{
-  background:var(--card);
-  padding:1rem;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  border: 4px solid transparent;
-  transition:transform .18s ease, border-color .18s ease;
+
+table, th, td{
+  margin: auto;
+  border: 1px solid #05353426;
+  padding: 12px 15px;
+  text-align: left;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--accent-2);
+  background: linear-gradient(to right, #d0e8ff, #c0e1ff);
+  color: rgb(0, 7, 26);
 }
-.serv-card:hover{transform:translateY(-6px)}
-.serv-card .title{font-weight:700;margin-bottom:0.5rem}
-.serv-card .price{font-weight:800;color:var(--accent-2);}
 
 /* GALERÍA */
 .section.galeria h2 {

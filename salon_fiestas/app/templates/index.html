@@ -153,7 +153,7 @@
 
         <!-- Instalaciones / Galería destacada -->
         <section id="instalaciones" class="section instalaciones wrap">
-            <h2>Instalaciones</h2>
+        <h2>Instalaciones</h2>
             <div class="insta-gallery">
                 <img src="{% static 'img/Salon1.jpg' %}" alt="Instalación 1" />
                 <img src="{% static 'img/Salon2.jpg' %}" alt="Instalación 2" />
@@ -164,11 +164,29 @@
 
         <!-- Servicios (dinámico) -->
         <section id="servicios" class="section servicios wrap">
-            <h2>Servicios</h2>
-            <p class="small">Selecciona un servicio para ver detalles y usarlo en el cotizador.</p>
-            <div id="servicios-list" class="servicios-list" aria-live="polite">
-                <!-- tarjetas pobladas por JS -->
-            </div>
+        <h2>Servicios</h2>
+        <div id="servicios-list"></div>
+                <table Border="1" cellpadding="5" cellspacing="0" >
+                    <caption><h1>Catálogo de Shows</h1></caption>
+                    <thead>
+                        <tr>
+                            <th>Nombre del Show</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Características</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for show in shows %}
+                        <tr>
+                            <td>{{ show.nombre_show }}</td>
+                            <td>{{ show.descripcion }}</td>
+                            <td>${{ show.precio }}</td>
+                            <td>{{ show.caracteristicas }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
         </section>
 
         <!-- Galería -->

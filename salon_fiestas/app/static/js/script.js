@@ -23,18 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const servicioSelect = document.getElementById('servicioSelect');
 
   servicios.forEach(s => {
-    // tarjeta
-    const card = document.createElement('article');
-    card.className = 'serv-card';
-    card.innerHTML = `
-      <div class="title">${escapeHtml(s.nombre)}</div>
-      <div class="desc">${escapeHtml(s.descripcion)}</div>
-      <div class="price">$${s.precio.toFixed(2)}</div>
-      <div class="meta small">Características: ${s.caracteristicas.join(', ')}</div>
-      <div style="margin-top:.6rem"><button data-id="${s.id}" class="usarBtn">Usar en cotización</button></div>
-    `;
-    serviciosList.appendChild(card);
-
     // opción select
     const opt = document.createElement('option');
     opt.value = s.id;
