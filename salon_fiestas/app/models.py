@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.core.management.base import BaseCommand
+from django.contrib.auth.models import Group
+
 
 
 # Create your models here.
@@ -43,3 +46,7 @@ class SHOW(models.Model):
     def __str__(self):
 
         return self.nombre_show
+
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        Group.objects.get_or_create(name='Empleados')

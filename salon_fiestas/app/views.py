@@ -5,6 +5,9 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from datetime import datetime, timedelta
 from django.utils import timezone 
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import Group, User
+
 
 
 # Create your views here.
@@ -132,16 +135,58 @@ class RoleLoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields['role'].widget.attrs.update({'id': 'id_role'})
 
+def is_admin(user):
+    return user.is_superuser
+
+def is_empleado(user):
+    return user.groups.filter(name='Empleados').exists()
+
+@login_required
+@user_passes_test(is_admin)
+def listar_reservaciones(request):
+    reservaciones = RESERVACION.objects.all()
+    return render(request, 'listar.html', {'reservaciones': reservaciones})
+
+@login_required
+@user_passes_test(is_empleado)
+def listar_empleado(request):
+    reservaciones = RESERVACION.objects.all()
+    return render(request, 'listar_empleado.html', {'reservaciones': reservaciones})
+
+
 class CustomLoginView(LoginView):
     template_name = 'login.html'
     authentication_form = RoleLoginForm
 
     def form_valid(self, form):
-        role = self.request.POST.get('role')
-        if role == 'admin':
+        response = super().form_valid(form)
+        user = form.get_user()
+        
+        if user.is_superuser:
             return redirect('listar')
-        else:
+        elif is_empleado(user):
             return redirect('listar_empleado')
+        return response
+
+
+@login_required
+@user_passes_test(is_admin)
+def crear_empleado(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        if not User.objects.filter(username=username).exists():
+            user = User.objects.create_user(
+                username=username,
+                password=password
+            )
+            empleados_group = Group.objects.get(name='Empleados')
+            user.groups.add(empleados_group)
+            return redirect('listar')
+            
+    return render(request, 'crear_empleado.html')
+
         
 def marcar_listo(request, id):
     reservacion = get_object_or_404(RESERVACION, id=id)
