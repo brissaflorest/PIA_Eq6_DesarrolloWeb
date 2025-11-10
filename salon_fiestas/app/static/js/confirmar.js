@@ -49,9 +49,10 @@ document.addEventListener("DOMContentLoaded", function() {
             icon: "success",
             confirmButtonText: "OK"
         }).then(() => {
-            event.target.submit(); // ahora sí se envía el form a django
+            // ✅ Elimina el parámetro 'exito' de la URL sin recargar
+            const url = new URL(window.location);
+            url.searchParams.delete("exito");
+            window.history.replaceState({}, document.title, url);
         });
     }
 });
-
-

@@ -58,7 +58,7 @@ def crear_reservacion(request):
             return render(request, 'crear.html', {'errores': errores})
         
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
-            errores['txtDuracion'] = 'La duración debe ser válida.'
+            errores['txtDuracion'] = 'La duración debe ser válida (De 1 a 6 horas).'
             return render(request, 'crear.html', {'errores': errores})
         
         num_invitados = int(request.POST['txtNum_Inv'], 0)
@@ -126,7 +126,7 @@ def editar_reservacion(request, id):
         
         
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
-            errores['txtDuracion'] = 'La duración debe ser válida.'
+            errores['txtDuracion'] = 'La duración debe ser válida (De 1 a 6 horas).'
             return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
         
         
