@@ -30,7 +30,9 @@
 
             <label for="txtNum_Inv">Numero de Invitados:</label>
             <input type="number" id="txtNum_Inv" name="txtNum_Inv" value="{{reservacion.num_invitados}}" required pattern="[0-9]+ o \d+">
-
+            {% if errores.txtNum_Inv %}
+                <p class="error">{{ errores.txtNum_Inv }}</p>
+            {% endif %}
 
             <label for="ddlTipo_Evento">Tipo de Evento:</label>
             <select name="ddlTipo_Evento" required>

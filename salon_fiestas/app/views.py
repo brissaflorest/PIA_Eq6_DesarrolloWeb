@@ -11,6 +11,7 @@ from django.db import models
 
 
 
+
 # Create your views here.
 def inicio(request):
     shows = SHOW.objects.all()
@@ -39,6 +40,9 @@ def crear_reservacion(request):
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt)
         duracion_horas_int = int(duracion_horas)
 
+        hora_inicio_permitida= fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
+        hora_fin_permitida= fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)  
+
         hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
         
 
@@ -47,6 +51,10 @@ def crear_reservacion(request):
 
         if fecha_evento_aware < timezone.now():
             errores['txtFecha'] = 'No se puede registrar una fecha anterior o igual a la actual.'
+            return render(request, 'crear.html', {'errores': errores})
+        
+        if fecha_evento_aware < hora_inicio_permitida or hora_fin_evento_propuesto > hora_fin_permitida:
+            errores['txtFecha'] = 'La hora del evento debe estar entre las 9:00 AM y las 10:00 PM.'
             return render(request, 'crear.html', {'errores': errores})
         
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
@@ -80,7 +88,7 @@ def crear_reservacion(request):
     
 
         RESERVACION.objects.create(nombre_cliente=nombre_cliente, fecha_evento=fecha_evento_aware, duracion_horas=duracion_horas_int, num_invitados=num_invitados, tipo_evento=tipo_evento, telefono_contacto=telefono_contacto, estatus=estatus)
-        return redirect('listar')
+        return redirect('/listar/?exito=1')
     return render(request, 'crear.html')
 
 def editar_reservacion(request, id):
@@ -97,7 +105,13 @@ def editar_reservacion(request, id):
         fecha_evento_dt = datetime.strptime(reservacion.fecha_evento, '%Y-%m-%dT%H:%M')
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt) # HAZLA AWARE
         duracion_horas_int = int(reservacion.duracion_horas)
+
+        hora_inicio_permitida= fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
+        hora_fin_permitida= fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)  
+
         hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
+
+        num_invitados = int(request.POST['txtNum_Inv'])
 
         errores = {}
         
@@ -106,11 +120,16 @@ def editar_reservacion(request, id):
             errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
             return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
         
+        if fecha_evento_aware < hora_inicio_permitida or hora_fin_evento_propuesto > hora_fin_permitida:
+            errores['txtFecha'] = 'La hora del evento debe estar entre las 9:00 AM y las 10:00 PM.'
+            return render(request, 'editar.html', {'reservacion': reservacion,'errores': errores})
+        
+        
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
             errores['txtDuracion'] = 'La duración debe ser válida.'
             return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
         
-        num_invitados = int(request.POST['txtNum_Inv'], 0)
+        
         if num_invitados <= 0:
             errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo.'
             return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
@@ -121,7 +140,7 @@ def editar_reservacion(request, id):
         if RESERVACION.objects.filter(fecha_evento=fecha_evento_aware).exclude(id=reservacion.id).exists():
             errores['txtFecha'] = 'Esta fecha ya está registrada.'
             return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
-              
+
         reservaciones_existentes = RESERVACION.objects.exclude(id=reservacion.id)
         for r in reservaciones_existentes:
             inicio_evento_existente = r.fecha_evento
@@ -140,7 +159,7 @@ def editar_reservacion(request, id):
         reservacion.num_invitados = num_invitados
         reservacion.save()
 
-        return redirect('listar')
+        return redirect("/listar/?exito=1")
     return render(request, 'editar.html', {'reservacion': reservacion})
 
 def eliminar_reservicion(request, id):

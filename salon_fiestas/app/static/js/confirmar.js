@@ -37,18 +37,21 @@ function confirmarEliminacion(event) {
 
 
 
-document.getElementById("form-crear").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    Swal.fire({
-        title: "¡Operación realizada correctamente!",
-        html: `
-            <p>La reservación fue procesada correctamente</p>
-            <img src="https://media.tenor.com/Xt80NIhpKnIAAAAM/jh.gif"
-            width="200" height="150" style="border-radius:10px; margin-top:10px;">`,
-        icon: "success",
-        confirmButtonText: "OK"
-    }).then(() => {
-        event.target.submit(); // ahora sí se envía el form a django
-    });
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("exito") === "1") {
+        Swal.fire({
+            title: "¡Operación realizada correctamente!",
+            html: `
+                <p>La reservación fue procesada correctamente</p>
+                <img src="https://media.tenor.com/Xt80NIhpKnIAAAAM/jh.gif"
+                width="200" height="150" style="border-radius:10px; margin-top:10px;">`,
+            icon: "success",
+            confirmButtonText: "OK"
+        }).then(() => {
+            event.target.submit(); // ahora sí se envía el form a django
+        });
+    }
 });
+
+
