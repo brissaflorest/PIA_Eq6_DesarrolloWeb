@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Reservaciones</title>
     <link rel="stylesheet" href="{% static 'css/stylelistar.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'js/confirmar.js' %}"></script>
 </head>
 
@@ -39,7 +40,7 @@
                 <td>{{ reservacion.estatus_actualizado }}</td>
                 <td>
                     <a class="boton-editar" href="{% url 'editar' reservacion.id %}">Editar</a>
-                    <a class="boton-eliminar" href="{% url 'eliminar' reservacion.id %}" onclick="return confirmarEliminacion()">Eliminar</a>
+                    <a class="boton-eliminar" href="{% url 'eliminar' reservacion.id %}" onclick="return confirmarEliminacion(event)">Eliminar</a>
                 </td>
             </tr>
             {% empty %}

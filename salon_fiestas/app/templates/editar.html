@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <title>Editar Producto</title>
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     {% include 'menu.html' %}
     <div class="form-container">
         <h1>Editar Reservación</h1>
-        <form method="post">
+        <form method="post" id="form-crear">
             {% csrf_token %}
             <label for="txtNombre_Cliente">Nombre del Cliente:</label>
             <input type="text" id="txtNombre_Cliente" name="txtNombre_Cliente" value="{{reservacion.nombre_cliente}}" required pattern="[A-Za-z\s]+">
@@ -58,5 +59,6 @@
             <button><a href="{% url 'listar' %}" class="btn">Volver</a></button>
         </form>
     </div>
+      <script src="{% static 'js/confirmar.js' %}"></script>
 </body>
 </html>
