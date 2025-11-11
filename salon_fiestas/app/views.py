@@ -56,8 +56,8 @@ def crear_reservacion(request):
             return render(request, 'crear.html', {'errores': errores})
         
         num_invitados = int(request.POST['txtNum_Inv'], 0)
-        if num_invitados <= 0:
-            errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo.'
+        if num_invitados <= 0 or num_invitados > 140:
+            errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo y menor a 140.'
             return render(request, 'crear.html', {'errores': errores})
 
         if RESERVACION.objects.filter(telefono_contacto=telefono_contacto).exists():
@@ -82,7 +82,7 @@ def crear_reservacion(request):
     
 
         RESERVACION.objects.create(nombre_cliente=nombre_cliente, fecha_evento=fecha_evento_aware, duracion_horas=duracion_horas_int, num_invitados=num_invitados, tipo_evento=tipo_evento, telefono_contacto=telefono_contacto, estatus=estatus)
-        return redirect('listar')
+        return redirect('/listar/?exito=1')
     return render(request, 'crear.html')
 
 def editar_reservacion(request, id):
@@ -136,8 +136,8 @@ def editar_reservacion(request, id):
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
             errores['txtDuracion'] = 'La duración debe ser válida (entre 1 y 6 horas).'
 
-        if num_invitados <= 0:
-            errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo.'
+        if num_invitados <= 0 or num_invitados > 140:
+            errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo y menor a 140.'
 
         if RESERVACION.objects.filter(telefono_contacto=telefono_contacto).exclude(id=reservacion.id).exists():
             errores['txtTelefono_Contacto'] = 'Este número ya está registrado.'
