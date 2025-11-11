@@ -19,7 +19,7 @@
         </div>
     </nav>
     <h1>Reservaciones Asignadas</h1>
-    <p class="mensaje-info">Puedes consultar las reservaciones y marcar como “listo” aquellas que ya se atendieron.</p>
+    <p class="mensaje-info">Puedes consultar las reservaciones y marcar como “Listo” aquellas que ya se atendieron.</p>
 
     <table class="tabla-productos">
         <thead>
@@ -45,7 +45,7 @@
                 <td>{{ reservacion.telefono_contacto }}</td>
                 <td>{{ reservacion.estatus }}</td>
                 <td>
-                    {% if reservacion.estatus != "Listo" %}
+                    {% if reservacion.estatus != "LISTO" %}
                     <form method="post" action="{% url 'marcar_listo' reservacion.id %}">
                         {% csrf_token %}
                         <button class="boton-listo" type="submit">Marcar como listo</button>

@@ -20,11 +20,16 @@ class RESERVACION(models.Model):
 
     telefono_contacto = models.CharField(max_length=15)
 
-    estatus = models.CharField(max_length=20, default='Pendiente')
+    estatus = models.CharField(max_length=20, default='PENDIENTE')
 
+    def save(self, *args, **kwargs):
+        for field in ['nombre_cliente', 'tipo_evento', 'estatus']:
+            value = getattr(self, field, None)
+            if value:
+                setattr(self, field, value.upper())
+        super().save(*args, **kwargs)
 
     def __str__(self):
-
         return self.nombre_cliente
     
     @property
@@ -42,10 +47,16 @@ class SHOW(models.Model):
 
     precio = models.DecimalField(max_digits=8, decimal_places=2)
 
-    caracteristicas = models.TextField(default='Ninguna')
+    caracteristicas = models.TextField(default='NINGUNA')
+
+    def save(self, *args, **kwargs):
+        for field in ['nombre_show', 'descripcion', 'caracteristicas']:
+            value = getattr(self, field, None)
+            if value:
+                setattr(self, field, value.upper())
+        super().save(*args, **kwargs)
 
     def __str__(self):
-
         return self.nombre_show
 
 class Command(BaseCommand):

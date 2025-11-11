@@ -37,10 +37,10 @@
             <label for="ddlTipo_Evento">Tipo de Evento:</label>
             <select name="ddlTipo_Evento" required>
                 <option value="">Selecciona el Tipo de Evento</option>
-                <option value="Paquete Basico" {% if reservacion.tipo_evento == "Paquete Basico" %}selected{% endif %}>Paquete Básico</option>
-                <option value="Paquete Premium" {% if reservacion.tipo_evento == "Paquete Premium" %}selected{% endif %}>Paquete Premium</option>
-                <option value="Show de Magia" {% if reservacion.tipo_evento == "Show de Magia" %}selected{% endif %}>Show de Magia</option>
-                <option value="Pinta Caritas" {% if reservacion.tipo_evento == "Pinta Caritas" %}selected{% endif %}>Pinta Caritas</option>
+                <option value="PAQUETE BASICO" {% if reservacion.tipo_evento == "PAQUETE BASICO" %}selected{% endif %}>PAQUETE BÁSICO</option>
+                <option value="PAQUETE PREMIUM" {% if reservacion.tipo_evento == "PAQUETE PREMIUM" %}selected{% endif %}>PAQUETE PREMIUM</option>
+                <option value="SHOW DE MAGIA" {% if reservacion.tipo_evento == "SHOW DE MAGIA" %}selected{% endif %}>SHOW DE MAGIA</option>
+                <option value="PINTA CARITAS" {% if reservacion.tipo_evento == "PINTA CARITAS" %}selected{% endif %}>PINTA CARITAS</option>
             </select><br>
             
 
@@ -53,8 +53,8 @@
             <label for="ddlestatus">Estatus:</label>
             <select name="ddlestatus" required>
                 <option value="">Selecciona un Estatus</option>
-                <option value="Pendiente" {% if reservacion.estatus == "Pendiente" %}selected{% endif %}>Pendiente</option>
-                <option value="Listo" {% if reservacion.estatus == "Listo" %}selected{% endif %}>Listo</option>
+                <option value="PENDIENTE" {% if reservacion.estatus == "PENDIENTE" %}selected{% endif %}>PENDIENTE</option>
+                <option value="LISTO" {% if reservacion.estatus == "LISTO" %}selected{% endif %}>LISTO</option>
             </select><br>
             
             <button type="submit">Actualizar</button>
