@@ -444,6 +444,21 @@ body{
   transform: translateX(-50%) translateY(-5px);
 }
 
+.audio-wrapper {
+  margin: 20px auto;
+  padding: 10px;
+  background: linear-gradient(to right, #FFF8F0, #FBB92A);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.audio-wrapper audio {
+  width: 300px;
+  height: 40px;
+  outline: none;
+  border-radius: 10px;
+}
+
 /* INSTALACIONES */
 .section.instalaciones h2 {
   text-align: center;
