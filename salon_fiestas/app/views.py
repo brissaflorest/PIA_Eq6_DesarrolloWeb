@@ -11,7 +11,6 @@ from django.db import models
 
 
 
-
 # Create your views here.
 def inicio(request):
     shows = SHOW.objects.all()
@@ -40,9 +39,6 @@ def crear_reservacion(request):
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt)
         duracion_horas_int = int(duracion_horas)
 
-        hora_inicio_permitida= fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
-        hora_fin_permitida= fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)  
-
         hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
         
 
@@ -53,12 +49,8 @@ def crear_reservacion(request):
             errores['txtFecha'] = 'No se puede registrar una fecha anterior o igual a la actual.'
             return render(request, 'crear.html', {'errores': errores})
         
-        if fecha_evento_aware < hora_inicio_permitida or hora_fin_evento_propuesto > hora_fin_permitida:
-            errores['txtFecha'] = 'La hora del evento debe estar entre las 9:00 AM y las 10:00 PM.'
-            return render(request, 'crear.html', {'errores': errores})
-        
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
-            errores['txtDuracion'] = 'La duración debe ser válida (De 1 a 6 horas).'
+            errores['txtDuracion'] = 'La duración debe ser válida.'
             return render(request, 'crear.html', {'errores': errores})
         
         num_invitados = int(request.POST['txtNum_Inv'], 0)
@@ -88,78 +80,92 @@ def crear_reservacion(request):
     
 
         RESERVACION.objects.create(nombre_cliente=nombre_cliente, fecha_evento=fecha_evento_aware, duracion_horas=duracion_horas_int, num_invitados=num_invitados, tipo_evento=tipo_evento, telefono_contacto=telefono_contacto, estatus=estatus)
-        return redirect('/listar/?exito=1')
+        return redirect('listar')
     return render(request, 'crear.html')
 
 def editar_reservacion(request, id):
     reservacion = get_object_or_404(RESERVACION, id=id)
-    if request.method == 'POST':
-        reservacion.nombre_cliente = request.POST['txtNombre_Cliente']
-        reservacion.fecha_evento = request.POST['txtFecha']
-        reservacion.duracion_horas = request.POST['txtDuracion']
-        reservacion.num_invitados = request.POST['txtNum_Inv']
-        reservacion.tipo_evento = request.POST['ddlTipo_Evento']
-        reservacion.telefono_contacto = request.POST['txtTelefono_Contacto']
-        reservacion.estatus = request.POST['ddlestatus']
-        
-        fecha_evento_dt = datetime.strptime(reservacion.fecha_evento, '%Y-%m-%dT%H:%M')
-        fecha_evento_aware = timezone.make_aware(fecha_evento_dt) # HAZLA AWARE
-        duracion_horas_int = int(reservacion.duracion_horas)
 
-        hora_inicio_permitida= fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
-        hora_fin_permitida= fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)  
+    if request.method == 'POST':
+        errores = {}
+
+        # Captura los datos del formulario
+        nombre_cliente = request.POST['txtNombre_Cliente']
+        fecha_evento_str = request.POST['txtFecha']  # ← string crudo del input
+        duracion_str = request.POST['txtDuracion']
+        num_invitados_str = request.POST['txtNum_Inv']
+        tipo_evento = request.POST['ddlTipo_Evento']
+        telefono_contacto = request.POST['txtTelefono_Contacto']
+        estatus = request.POST['ddlestatus']
+
+        # Cargados de nuevo en el formulario Atributos temporales
+        reservacion.nombre_cliente = nombre_cliente
+        reservacion.fecha_evento_input = fecha_evento_str
+        reservacion.duracion_horas = duracion_str
+        reservacion.num_invitados = num_invitados_str
+        reservacion.tipo_evento = tipo_evento
+        reservacion.telefono_contacto = telefono_contacto
+        reservacion.estatus = estatus
+
+        try:
+            fecha_evento_dt = datetime.strptime(fecha_evento_str, '%Y-%m-%dT%H:%M')
+            fecha_evento_aware = timezone.make_aware(fecha_evento_dt)
+        except ValueError:
+            errores['txtFecha'] = 'Formato de fecha inválido.'
+            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
+
+        try:
+            duracion_horas_int = int(duracion_str)
+            num_invitados = int(num_invitados_str)
+        except ValueError:
+            errores['txtDuracion'] = 'Duración inválida.'
+            errores['txtNum_Inv'] = 'Número de invitados inválido.'
+            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
 
         hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
-
-        num_invitados = int(request.POST['txtNum_Inv'])
-
-        errores = {}
-        
+        hora_inicio_permitida = fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
+        hora_fin_permitida = fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)
 
         if fecha_evento_aware < timezone.now():
             errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
-            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
-        
-        if fecha_evento_aware < hora_inicio_permitida or hora_fin_evento_propuesto > hora_fin_permitida:
+        elif fecha_evento_aware < hora_inicio_permitida or hora_fin_evento_propuesto > hora_fin_permitida:
             errores['txtFecha'] = 'La hora del evento debe estar entre las 9:00 AM y las 10:00 PM.'
-            return render(request, 'editar.html', {'reservacion': reservacion,'errores': errores})
-        
-        
+
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
-            errores['txtDuracion'] = 'La duración debe ser válida (De 1 a 6 horas).'
-            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
-        
-        
+            errores['txtDuracion'] = 'La duración debe ser válida (entre 1 y 6 horas).'
+
         if num_invitados <= 0:
             errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo.'
-            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
 
-        if RESERVACION.objects.filter(telefono_contacto=request.POST['txtTelefono_Contacto']).exclude(id=reservacion.id).exists():
+        if RESERVACION.objects.filter(telefono_contacto=telefono_contacto).exclude(id=reservacion.id).exists():
             errores['txtTelefono_Contacto'] = 'Este número ya está registrado.'
-            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
+
         if RESERVACION.objects.filter(fecha_evento=fecha_evento_aware).exclude(id=reservacion.id).exists():
             errores['txtFecha'] = 'Esta fecha ya está registrada.'
-            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
 
-        reservaciones_existentes = RESERVACION.objects.exclude(id=reservacion.id)
-        for r in reservaciones_existentes:
-            inicio_evento_existente = r.fecha_evento
-            fin_existente = inicio_evento_existente + timedelta(hours=r.duracion_horas)
-
-            if (inicio_evento_existente < hora_fin_evento_propuesto and fin_existente > fecha_evento_aware):
+        for r in RESERVACION.objects.exclude(id=reservacion.id):
+            inicio = r.fecha_evento
+            fin = inicio + timedelta(hours=r.duracion_horas)
+            if inicio < hora_fin_evento_propuesto and fin > fecha_evento_aware:
                 errores['txtFecha'] = (
-                    f'Ya existe una reservación en el horario de {inicio_evento_existente.strftime("%I:%M %p")} '
-                    f'a {fin_existente.strftime("%I:%M %p")}. '
+                    f'Ya existe una reservación de {inicio.strftime("%I:%M %p")} a {fin.strftime("%I:%M %p")}. '
                     f'Por favor elige otro horario.'
                 )
-                return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
-            
+                break
+
+        if errores:
+            return render(request, 'editar.html', {'reservacion': reservacion, 'errores': errores})
+
+        # Guardar los datos queverientos
         reservacion.fecha_evento = fecha_evento_aware
         reservacion.duracion_horas = duracion_horas_int
         reservacion.num_invitados = num_invitados
         reservacion.save()
 
-        return redirect("/listar/?exito=1")
+        return redirect('/listar/?exito=1')
+
+    # Aqui se prepara la fecha para el input
+    reservacion.fecha_evento_input = reservacion.fecha_evento.strftime('%Y-%m-%dT%H:%M')
     return render(request, 'editar.html', {'reservacion': reservacion})
 
 def eliminar_reservicion(request, id):

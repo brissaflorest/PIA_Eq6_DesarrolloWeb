@@ -17,7 +17,7 @@
             <input type="text" id="txtNombre_Cliente" name="txtNombre_Cliente" value="{{reservacion.nombre_cliente}}" required pattern="[A-Za-z\s]+">
 
             <label for="txtFecha">Fecha:</label>
-            <input type="datetime-local" id="txtFecha" name="txtFecha" value="{{reservacion.fecha_evento|date:'Y-m-d'}}T{{reservacion.fecha_evento|time:'H:i'}}" required>
+            <input type="datetime-local" id="txtFecha" name="txtFecha" value="{{ reservacion.fecha_evento_input }}"required>
             {% if errores.txtFecha %}
                 <p class="error">{{ errores.txtFecha }}</p>
             {% endif %}
