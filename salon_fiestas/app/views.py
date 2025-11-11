@@ -39,18 +39,20 @@ def crear_reservacion(request):
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt)
         duracion_horas_int = int(duracion_horas)
 
+        hora_inicio_permitida= fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
+        hora_fin_permitida= fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)
+
         hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
         
-
         errores = {}
             
-
         if fecha_evento_aware < timezone.now():
-            errores['txtFecha'] = 'No se puede registrar una fecha anterior o igual a la actual.'
-            return render(request, 'crear.html', {'errores': errores})
+            errores['txtFecha'] = 'No se puede registrar una fecha anterior a la actual.'
+        elif fecha_evento_aware < hora_inicio_permitida or hora_fin_evento_propuesto > hora_fin_permitida:
+            errores['txtFecha'] = 'La hora del evento debe estar entre las 9:00 AM y las 10:00 PM.'
         
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
-            errores['txtDuracion'] = 'La duración debe ser válida.'
+            errores['txtDuracion'] = 'La duración debe ser válida (entre 1 y 6 horas).'
             return render(request, 'crear.html', {'errores': errores})
         
         num_invitados = int(request.POST['txtNum_Inv'], 0)
