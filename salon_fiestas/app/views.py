@@ -81,7 +81,7 @@ def crear_reservacion(request):
                 break
     
         if errores:
-            return render(request, 'editar.html', {'errores': errores})
+            return render(request, 'crear.html', {'errores': errores})
         
         RESERVACION.objects.create(nombre_cliente=nombre_cliente, fecha_evento=fecha_evento_aware, duracion_horas=duracion_horas_int, num_invitados=num_invitados, tipo_evento=tipo_evento, telefono_contacto=telefono_contacto, estatus=estatus)
         return redirect('/listar/?exito=1')
