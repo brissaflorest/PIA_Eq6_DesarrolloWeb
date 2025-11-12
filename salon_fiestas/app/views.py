@@ -39,10 +39,11 @@ def crear_reservacion(request):
         fecha_evento_aware = timezone.make_aware(fecha_evento_dt)
         duracion_horas_int = int(duracion_horas)
 
+        hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
         hora_inicio_permitida= fecha_evento_aware.replace(hour=9, minute=0, second=0, microsecond=0)
         hora_fin_permitida= fecha_evento_aware.replace(hour=22, minute=0, second=0, microsecond=0)
 
-        hora_fin_evento_propuesto = fecha_evento_aware + timedelta(hours=duracion_horas_int)
+        
         
         errores = {}
             
@@ -53,19 +54,18 @@ def crear_reservacion(request):
         
         if duracion_horas_int <= 0 or duracion_horas_int > 6:
             errores['txtDuracion'] = 'La duración debe ser válida (entre 1 y 6 horas).'
-            return render(request, 'crear.html', {'errores': errores})
+            
         
         num_invitados = int(request.POST['txtNum_Inv'], 0)
         if num_invitados <= 0 or num_invitados > 140:
             errores['txtNum_Inv'] = 'El número de invitados debe ser un entero positivo y menor a 140.'
-            return render(request, 'crear.html', {'errores': errores})
 
         if RESERVACION.objects.filter(telefono_contacto=telefono_contacto).exists():
             errores['txtTelefono_Contacto'] = 'Este número ya está registrado.'
-            return render(request, 'crear.html', {'errores': errores})
+            
         if RESERVACION.objects.filter(fecha_evento=fecha_evento_aware).exists():
             errores['txtFecha'] = 'Esta fecha ya está registrada.'
-            return render(request, 'crear.html', {'errores': errores})  
+            
         
         reservaciones_existentes=RESERVACION.objects.all()
         for r in reservaciones_existentes:
@@ -78,9 +78,11 @@ def crear_reservacion(request):
                     f'a {fin_existente.strftime("%I:%M %p")}. '
                     f'Por favor elige otro horario.'
                 )
-                return render(request, 'crear.html', {'errores': errores})
+                break
     
-
+        if errores:
+            return render(request, 'editar.html', {'errores': errores})
+        
         RESERVACION.objects.create(nombre_cliente=nombre_cliente, fecha_evento=fecha_evento_aware, duracion_horas=duracion_horas_int, num_invitados=num_invitados, tipo_evento=tipo_evento, telefono_contacto=telefono_contacto, estatus=estatus)
         return redirect('/listar/?exito=1')
     return render(request, 'crear.html')
